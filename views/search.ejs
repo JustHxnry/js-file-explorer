@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Search for '<%= key %>' | File Explorer</title>
+		<link
+			rel="shortcut icon"
+			href="https://www.pngfind.com/pngs/m/296-2969762_all-photo-png-clipart-open-file-icon-png.png"
+		/>
+
+		<!-- Font Awesome Import -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+			integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+	</head>
+	<style>
+		.control-panel {
+			display: flex;
+			flex-direction: row;
+		}
+		form > button {
+			margin-right: 10px;
+		}
+	</style>
+	<body>
+		<div id="file-explorer">
+			<div class="control-panel">
+				<form
+					action="/search"
+					method="post"
+					enctype="application/x-www-form-urlencoded"
+				>
+					<input
+						type="search"
+						name="key"
+						id="search"
+						placeholder="Search For File"
+					/>
+					<input
+						type="checkbox"
+						name="searchEverywhere"
+						id="searchEverywhere"
+						title="Search Everywhere?"
+					/>
+					<input
+						type="hidden"
+						name="url"
+						value="<%= path == 'This PC' ? 'C:/' : path %>"
+					/>
+					<button type="submit">Search</button>
+				</form>
+				<% if (String(path).toLowerCase() != 'this pc') { %>
+				<form
+					action="/back"
+					method="post"
+					enctype="application/x-www-form-urlencoded"
+				>
+					<input type="hidden" name="url" value="<%= path %>" />
+					<button type="submit"><i class="fa-solid fa-arrow-up"></i></button>
+				</form>
+				<% } %>
+			</div>
+			<br /><br />
+			<% data.forEach(file => { %> <% if (everywhere == 'on') { %>
+			<span
+				onclick="window.location.href='http://localhost:3000/<%= file.split(`\\`).join(`/`) %>'"
+				><%= file %></span
+			><br />
+			<% } else { %>
+			<span
+				onclick="window.location.href='http://localhost:3000/<%= path %>/<%= file.split(`\\`).join(`/`) %>'"
+				><%= file %></span
+			><br />
+			<% } %> <% }); %>
+		</div>
+	</body>
+</html>

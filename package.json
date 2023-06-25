@@ -1,0 +1,38 @@
+{
+	"name": "js-file-explorer",
+	"version": "1.0.0",
+	"description": "File Explorer in JS",
+	"main": "index.js",
+	"scripts": {
+		"start": "node .",
+		"dev": "nodemon ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/JustHxnry/js-file-explorer.git"
+	},
+	"keywords": [
+		"file",
+		"explorer",
+		"files",
+		"fileexplorer",
+		"js",
+		"javascript"
+	],
+	"author": "JustHxnry",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/JustHxnry/js-file-explorer/issues"
+	},
+	"homepage": "https://github.com/JustHxnry/js-file-explorer#readme",
+	"dependencies": {
+		"body-parser": "^1.20.2",
+		"ejs": "^3.1.9",
+		"express": "^4.18.2",
+		"fs": "^0.0.1-security",
+		"path": "^0.12.7"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.22"
+	}
+}
